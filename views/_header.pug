@@ -1,9 +1,15 @@
 header
     nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-        a.navbar-brand(href="/api/categorias") Principal
-        div.container-fluid
-            div.navbar-nav     
-                a.nav-item.nav-link(href="/api/categorias") Categorías
-                a.nav-item.nav-link(href="/api/items") Ítems
-                a.nav-item.nav-link(href="#") Usuarios
+        a.navbar-brand(href="#") Principal
+        button.navbar-toggler(data-toggle='collapse', data-target='#navbarMenu')
+            span.navbar-toggler-icon
+        div.collapse.navbar-collapse#navbarMenu
+            ul.navbar-nav
+                li.nav-item 
+                    a.nav-item.nav-link(href="/api/categorias") Categorías
+                li.nav-item 
+                    a.nav-item.nav-link(href="/api/items") Ítems
+                li.nav-item
+                    a.nav-item.nav-link(href="#") Usuarios
+
 
