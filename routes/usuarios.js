@@ -3,8 +3,7 @@ const { Router } = require('express');
 const {
         usuariosGet,
         usuariosPost, 
-        usuariosPut, 
-        usuariosPatch, 
+        usuariosPut,  
         usuariosDelete } = require('../controllers/usuarios');
 
 const router = Router();
@@ -18,8 +17,5 @@ const router = Router();
 
     router.delete('/', usuariosDelete);
     
-    
-    router.patch('/', usuariosPatch);
-
 
 module.exports = router;

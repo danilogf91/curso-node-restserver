@@ -1,0 +1,15 @@
+extends base
+
+block content
+    main.main
+    .card-container
+
+        each categoria in categorias
+            .card
+                .card__header
+                    .card__picture
+                        .card__picture-overlay &nbsp;
+                        //-img.card__picture-img(src=`/img/categorias/${categoria.imageCover}`, alt=`${categoria.name}`)
+                    h3.heading-tertirary
+                        span= categoria.razonSocial
+

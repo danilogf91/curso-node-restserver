@@ -1,48 +1,66 @@
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
 
-class Server{
+const dbConnection = require("../database/congif");
 
-    constructor() {
-        this.app = express();           // crear app 
-        this.port = process.env.PORT;   // valor del puerto pasado por variables de entorno
-        this.usuariosPath = '/api/usuarios'; // path usuarios
+class Server {
+  constructor() {
+    this.app = express(); // crear app
 
-        // Middlewares
-        this.middlewares();
+    //! Set pug template
+    this.app.set("view engine", "pug");
+    this.app.set("views", path.join(__dirname, "../views"));
 
+    this.port = process.env.PORT; // valor del puerto pasado por variables de entorno
 
-        // Rutas de mi aplicacion
-        this.routes();              // llamar a las rutas
+    this.path = {
+      usuariosPath: "/api/usuarios", // path usuarios
+      itemsPath: "/api/items", // path usuarios
+      categoriasPath: "/api/categorias", // path usuarios
+    };
 
-    }
+    // Conexion con DB
+    this.conectarDB();
 
-    middlewares() {
+    // Middlewares
+    this.middlewares();
 
-        // CORS
-        this.app.use(cors());
+    // Rutas de mi aplicacion
+    this.routes(); // llamar a las rutas
+  }
 
-        // Lectura y parseo del body 
-        this.app.use(express.json());   // cualquier informacion que venga en post, put, delete va a reconocer y serializar
+  // Funcion asincrona que espera la conexion con la base de datos
+  async conectarDB() {
+    await dbConnection();
+  }
 
-        // Directorio publico
-        this.app.use(express.static('public'));
-    }
+  // habilitar rutas cruzadas del servidor y permitir el paso de datos
+  middlewares() {
+    // CORS
+    this.app.use(cors());
 
-    // manejar las rutas
-    routes() {
+    // Lectura y parseo del body
+    this.app.use(express.json()); // cualquier informacion que venga en post, put, delete va a reconocer y serializar
 
-        // cambio de rutas usadas en la carpeta routes/user
-        this.app.use(this.usuariosPath, require('../routes/usuarios'));
-    
-    }
+    // Directorio publico
+    this.app.use(express.static("public"));
+  }
 
-    // escuchar el servidor en un puerto
-    listen() {
+  // manejar las rutas
+  routes() {
+    // cambio de rutas usadas en la carpeta routes/user
+    this.app.use(this.path.categoriasPath, require("../routes/categorias"));
+    this.app.use(this.path.itemsPath, require("../routes/items"));
+    this.app.use(this.path.usuariosPath, require("../routes/usuarios"));
+  }
+
+  // escuchar el servidor en un puerto
+  listen() {
     this.app.listen(this.port, () => {
-        console.log(`Servidor corriendo en el puerto: ${this.port}`);
-        });
-    }
+      console.log(`Servidor corriendo en el puerto: ${this.port}`);
+    });
+  }
 }
 
 module.exports = Server;
