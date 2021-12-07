@@ -16,14 +16,14 @@ const obtenerItems = async (req, res = response) => {
   let sigPage = currentPage * 1 + 1;
   let antPage = currentPage * 1 - 1;
   let numPages = Math.ceil(total / limite);
-  console.log(
-    "Total de paginas=",
-    numPages,
-    "Pagina actual=",
-    currentPage,
-    "Siguiente pagina actual=",
-    sigPage
-  );
+  // console.log(
+  //   "Total de paginas=",
+  //   numPages,
+  //   "Pagina actual=",
+  //   currentPage,
+  //   "Siguiente pagina actual=",
+  //   sigPage
+  // );
 
   res.status(200).render("items", {
     title: "Todos los items",
