@@ -4,7 +4,7 @@ block content
         head
           title= title
           //-link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous")
-        body.bg-light
+        body.bg-light.max-height
             div.container
               div.row
                 each categoria in categorias
@@ -15,6 +15,7 @@ block content
                             h3.card-title= categoria.tipo
                             p.card-text= categoria.descripcion
                             a(href="#", class="btn btn-primary")=`Ir a ${categoria.tipo.toLowerCase()}`
+            if total > 0                
               - let n = 1;
               div.row.align-items-center.mt-2
                   div.col-sm-4
@@ -36,4 +37,11 @@ block content
                         li.page-item
                         if numPages != currentPage
                           a.page-link(href=`?limite=${numberPerPage}&desde=${sigPage}`) Siguiente
+                  div.col-sm-4
+            else 
+                div.row.align-items-center.mt-2
+                  div.col-sm-4
+                  div.col-sm-4
+                    h1 No existen Categorias
+                    a.btn.btn-primary(href="/api/categorias/nueva")   Crear categoria  
                   div.col-sm-4

@@ -3,13 +3,18 @@ header
         a.navbar-brand(href="#") Principal
         button.navbar-toggler(data-toggle='collapse', data-target='#navbarMenu')
             span.navbar-toggler-icon
-        div.collapse.navbar-collapse#navbarMenu
-            ul.navbar-nav
-                li.nav-item 
-                    a.nav-item.nav-link(href="/api/categorias") Categorías
-                li.nav-item 
-                    a.nav-item.nav-link(href="/api/items") Ítems
-                li.nav-item
-                    a.nav-item.nav-link(href="#") Usuarios
+        ul.collapse.navbar-collapse#navbarMenu.mb-0.p-0
+            .nav-item.dropdown
+                .nav-link.dropdown-toggle.text-info.p-1(data-toggle="dropdown", href="#", role="button", aria-expanded="false") Categorías
+                div.dropdown-menu
+                    a.dropdown-item(href="/api/categorias") Todas las Categorías
+                    div.dropdown-divider
+                    a.dropdown-item(href="/api/categorias/nueva") Crear Categorias
 
-
+            .nav-item.dropdown
+                a.nav-link.dropdown-toggle.text-info.p-1(data-toggle="dropdown", href="#", role="button", aria-expanded="false") Ítems
+                div.dropdown-menu
+                    a.dropdown-item(href="/api/items") Todos los Ítems
+                    div.dropdown-divider
+                    a.dropdown-item(href="#") Crear Ítems
+                     

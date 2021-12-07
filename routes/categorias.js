@@ -6,6 +6,7 @@ const {
   categoriasDelete,
   obtenerCategorias,
   crearCategorias,
+  nuevaCategoria,
 } = require("../controllers/categorias");
 const { verificaSiExisteCategoria } = require("../helpers/dbValidators");
 const { validarCampos } = require("../middlewares/validarCampos");
@@ -14,15 +15,10 @@ const router = Router();
 
 // funciones declaradas en controladores, usadas para manejar las rutas
 router.get("/", obtenerCategorias);
-/*
-router.get("/", function (req, res) {
-  res.render("index", { title: "Hey", message: "Hello there!" });
-});
-
-*/
+router.get("/nueva", nuevaCategoria);
 
 router.post(
-  "/",
+  "/nueva",
   [
     check("tipo", "El tipo es obligatoria check").not().isEmpty(),
     check("descripcion", "La descripción es obligatoria check").not().isEmpty(),

@@ -3,10 +3,11 @@ const Categoria = require("../models/categoria");
 
 const obtenerCategorias = async (req, res = response) => {
   const { limite = 4, desde = 1 } = req.query;
+  const query = { estado: true };
 
   const [total, categorias] = await Promise.all([
-    Categoria.countDocuments(),
-    Categoria.find()
+    Categoria.countDocuments(query),
+    Categoria.find(query)
       .skip(Number((desde - 1) * limite))
       .limit(Number(limite)),
   ]);
@@ -38,6 +39,7 @@ const obtenerCategorias = async (req, res = response) => {
 
 const crearCategorias = async (req, res = response) => {
   const { estado, ...body } = req.body;
+
   const categoriaName = body.tipo.toUpperCase();
 
   const categoriaDB = await Categoria.findOne({ tipo: categoriaName });
@@ -61,7 +63,19 @@ const crearCategorias = async (req, res = response) => {
   // Guardar DB
   await categoria.save();
 
-  res.status(201).json(categoria);
+  res.status(201).json({
+    status: "success",
+    categoria,
+  });
+};
+
+const nuevaCategoria = async (req, res = response) => {
+  const { estado, ...body } = req.body;
+  console.log("Ingresaste a crear categoria");
+
+  res.status(200).render("nuevaCategoria", {
+    title: "Crear categoria",
+  });
 };
 
 const categoriasPut = (req, res) => {
@@ -84,4 +98,5 @@ module.exports = {
   categoriasDelete,
   obtenerCategorias,
   crearCategorias,
+  nuevaCategoria,
 };
