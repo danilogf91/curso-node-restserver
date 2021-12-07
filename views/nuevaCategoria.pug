@@ -7,16 +7,17 @@ block content
         body.bg-light.max-height
             div.container
 
-                form.form-group
-                    div 
+                form.form-group.mt-5.col-8
+                    div.mb-2
                         label(for="tipoDeCategoria") Tipo de categoría  
-                        input.form-control#tipoDeCategoria(type="text", aria-describedby="categoriaHelp", placeholder="Ingrese el nombre de la categoría")
-                    div 
-                        label(for="descripcionDeCategoria") Descripción categoría  
-                        input.form-control#descripcionDeCategoria(type="text", aria-describedby="descripcionHelp", placeholder="Ingrese la descripción de la categoría")
-                    
-                    div 
-                        label(for="usuarioDeCategoria") Tipo de usuario  
-                        input.form-control#usuarioDeCategoria(type="text", aria-describedby="usuarioHelp", placeholder="Ingrese el tipo de usuario")
+                        input.form-control#tipoDeCategoria(type="text", aria-describedby="categoriaHelp", placeholder="Ingrese el nombre de la categoría", required)
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    div.mb-2
+                        label(for="descripcionDeCategoria") Descripción categoría  
+                        input.form-control#descripcionDeCategoria(type="text", aria-describedby="descripcionHelp", placeholder="Ingrese la descripción de la categoría",required)
+                    
+                    div.mb-2
+                        label(for="usuarioDeCategoria") Tipo de usuario  
+                        input.form-control#usuarioDeCategoria(type="text", aria-describedby="usuarioHelp", placeholder="Ingrese el tipo de usuario",required)
+
+                    button.btn.btn-primary.mt-3(type="submit") Guardar Categoría

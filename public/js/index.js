@@ -16,7 +16,6 @@ const nuevaCategoria = async (
       },
     });
 
-    console.log(res.data);
     if (res.data.status === "success") {
       location.replace("http://localhost:8080/api/categorias");
     }
